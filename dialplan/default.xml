@@ -1,0 +1,12 @@
+<extension name="Local_Extension">
+    <condition field="destination_number" expression="^(10[01][0-8])$">
+    <action application="set" data="RECORD_TITLE=Recording ${destination_number} ${caller_id_number} ${strftime(%Y-%m-%d %H:%M)}"/>
+	<action application="set" data="RECORD_COPYRIGHT=(c) 2011"/>
+	<action application="set" data="RECORD_SOFTWARE=FreeSWITCH"/>
+	<action application="set" data="RECORD_ARTIST=FreeSWITCH"/>
+	<action application="set" data="RECORD_COMMENT=FreeSWITCH"/>
+	<action application="set" data="RECORD_DATE=${strftime(%Y-%m-%d %H:%M)}"/>
+	<action application="set" data="RECORD_STEREO=true"/>
+	<action application="record_session" data="$${recordings_dir}/archive/${strftime(%Y-%m-%d-%H-%M-%S)}_${destination_number}_${caller_id_number}.wav"/>
+	</condition>
+</extension>
